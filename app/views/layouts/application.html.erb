@@ -9,6 +9,10 @@
   </head>
 
   <body>
+    <% if @show_love %>
+      <%= render partial: 'love' %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
