@@ -5,11 +5,14 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'bootstrap', '4.0.0.alpha6'
-gem 'jquery-rails'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
+
+# gem位置至少要在rails下面
+gem 'bootstrap', '4.0.0' #如果用apha4.0.0會錯
+gem 'jquery-rails'
+
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
