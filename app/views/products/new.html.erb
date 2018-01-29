@@ -11,23 +11,3 @@
   <br>
   <button type="submit">送出</button>
 <% end %>
-
-
-<script>
-  $(function(){
-      var token=$('meta[name="csrf-token"]').attr('content');
-      var input_token = $('input[name=authenticity_token]');
-      input_token.val(token);
-
-      $.ajax({
-          method: "POST",
-          url: '/products',
-          data: { name: "John",
-                  description: "Boston",
-                  image_url: "",
-                  price: 11001,
-                  authenticity_token: token
-                }
-      })
-  })
-</script>
