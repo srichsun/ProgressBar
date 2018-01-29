@@ -5,8 +5,13 @@
     <p><%= product.description %></p>
 
     <div>
-      <a href="#" class="btn btn-default" role="button">Button</a>
       <%= link_to "edit", edit_product_path(product),class: 'btn btn-primary' %>
+      <%= link_to "Delete", product_path(product),
+                            method: :delete,
+                            class: "btn btn-danger",
+                            data: { confirm: "Are you sure?" } %>
+      <%#= link_to "Delete", "products/#{product.id}",..... %>
+      <!-- 一樣意思 -->
     </div>
   </div>
 </div>

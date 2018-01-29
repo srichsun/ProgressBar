@@ -54,6 +54,14 @@ class ProductsController < ApplicationController
 
     redirect_to action: :edit
   end
+
+  def destroy
+    product = Product.find(params[:id])
+    product.destroy
+
+    redirect_to action: :index
+  end
+
   def product_permit
     params.require(:product).permit([:name, :description, :image_url, :price])
     # 因為使用form_for
