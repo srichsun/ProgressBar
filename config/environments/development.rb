@@ -37,6 +37,9 @@ Rails.application.configure do
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 
+  # 預設圖檔不在assets pipline程式會噴錯，把它關掉，讓程式沒有圖檔就顯示沒圖檔
+  config.assets.unknown_asset_fallback = true
+
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.

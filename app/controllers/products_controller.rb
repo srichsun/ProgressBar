@@ -11,6 +11,9 @@ class ProductsController < ApplicationController
 
     @first_page_number = 1
     @last_page_number = Product.count / PRODUCTS_PER_PAGE_COUNT
+    if (Product.count % PRODUCTS_PER_PAGE_COUNT)
+      @last_page_number += 1
+    end
 
     @products = Product.all
     @current_page_number = params[:current_page] ? params[:current_page].to_i : 1
