@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   PRODUCTS_PER_PAGE_COUNT = 20
 
