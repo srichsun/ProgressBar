@@ -1,0 +1,12 @@
+<h3>編輯商品</h3>
+<%= form_tag("/products/#{@product.id}", method: :patch) do %>
+  <label>名稱<input type="text" name="name" value="<%= @product.name %>"></label>
+  <br>
+  <label>價錢<input type="number" name="price" value="<%= @product.price %>"></label>
+  <br>
+  <label>描述<input type="text" name="description" value="<%= @product.description %>"></label>
+  <br>
+  <label>圖片<input type="text" name="image_url" value="<%= @product.image_url %>"></label>
+  <br>
+  <button type="submit">更新</button>
+<% end %>

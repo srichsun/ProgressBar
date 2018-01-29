@@ -43,6 +43,16 @@ class ProductsController < ApplicationController
     redirect_to action: :new     #同一個controller下
   end
 
+  def edit
+    @product = Product.find(params[:id])
+  end
+
+  def update
+    product = Product.find(params[:id])
+    product.update(product_permit)
+
+    redirect_to action: :edit
+  end
   def product_permit
     params.permit([:name, :description, :image_url, :price])
   end
