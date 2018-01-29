@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20180129051344) do
 
-  create_table "categories", primary_key: "kkk", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.string "image_url"

@@ -1,7 +1,6 @@
 class CreateCategories < ActiveRecord::Migration[5.1]
   def change
-    create_table :categories, id: false do |t|
-      t.primary_key :kkk
+    create_table :categories do |t|
       t.string :name
       t.text :description
       t.string :image_url
