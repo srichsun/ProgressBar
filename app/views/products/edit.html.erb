@@ -1,12 +1,20 @@
 <h3>編輯商品</h3>
-<%= form_tag(product_path(@product), method: :put) do %>
-  <label>名稱<input type="text" name="name" value="<%= @product.name %>"></label>
+<%= form_for @product, method: :put do |p| %>
+  <%= p.label :name, "名稱" %>
+  <%= p.text_field :name %>
   <br>
-  <label>價錢<input type="number" name="price" value="<%= @product.price %>"></label>
+
+  <%= p.label :description, "敘述" %>
+  <%= p.text_field :description %>
   <br>
-  <label>描述<input type="text" name="description" value="<%= @product.description %>"></label>
+
+  <%= p.label :image_url, "圖片連結" %>
+  <%= p.text_field :image_url %>
   <br>
-  <label>圖片<input type="text" name="image_url" value="<%= @product.image_url %>"></label>
+
+  <%= p.label :price, "價格" %>
+  <%= p.number_field :price%>
   <br>
-  <button type="submit">更新</button>
+
+  <%= p.submit "更新"%>
 <% end %>

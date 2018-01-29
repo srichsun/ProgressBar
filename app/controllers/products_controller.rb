@@ -21,6 +21,7 @@ class ProductsController < ApplicationController
   end
 
   def new
+    @product = Product.new
     @note = flash[:note]
   end
 
@@ -54,6 +55,10 @@ class ProductsController < ApplicationController
     redirect_to action: :edit
   end
   def product_permit
-    params.permit([:name, :description, :image_url, :price])
+    params.require(:product).permit([:name, :description, :image_url, :price])
+    # 因為使用form_for
+    # name, description等等這些欄位已經不是在第一層了，被多包在product裡面
+    # "product"=>{"name"=>"GGG", "description"=>"beautiful ocean", "image_url"=>"https://static.pexels.com/photos/128458/pexels-photo-128458.jpeg", "price"=>"200"}
+    # 所以要用require(:product)
   end
 end
