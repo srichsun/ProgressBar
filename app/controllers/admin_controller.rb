@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
 
   def log_in
-
+    @name = current_user.name
   end
 
   def log_out
