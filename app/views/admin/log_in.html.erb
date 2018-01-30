@@ -12,4 +12,19 @@
 <% end %>
 
 
-<%= @note %>
+<%= @current_user %>
+
+<%#= @current_user.name %>
+<!-- 如果我們想要這樣取名字會error，
+因為這個東西是從session取出來的，
+而session是存在cookie，
+cookie就是一個檔案，就好像資料庫檔案，
+因此class已經不是User, 變成了hash。
+
+從chrome - network - domain/log_in - Headers - request headers
+就可以看到Cookie，裡面有這段
+_progress_bar_session=bXcrcC8wUVcvb050N3JWTUVFaE.....
+代表我們送requeset時候把這些值存到cookie裡面。
+
+cookie是一個檔案，可以在電腦chrome資料夾裡面找到，裡面就會看到這段
+_progress_bar_session=bXcrcC8wUVcvb050N3JWTUVFaE..... -->
