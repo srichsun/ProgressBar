@@ -2,6 +2,10 @@ class ProductsController < ApplicationController
 
   PRODUCTS_PER_PAGE_COUNT = 20
 
+  def show
+    @product = Product.find_by_id(params[:id])
+  end
+
   def index
     @ad = {
       title: "Advmeds Design",
@@ -45,7 +49,11 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find(params[:id])
+    @product = Product.find_by_id(params[:id])
+    if @product.blank?
+      redirect_to action: :index
+      return # redirect_to 後面會繼續執行，這樣更乾淨
+    end
   end
 
   def update
