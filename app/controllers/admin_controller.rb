@@ -1,8 +1,10 @@
 class AdminController < ApplicationController
 
   def log_in
-    # @ note = flash[:note]
-     @current_user = session[:current_user]
+      current_user_id =  session[:current_user_id]
+      if current_user_id
+        @current_user = User.find_by_id(current_user_id)
+      end
   end
 
   def log_out
@@ -13,11 +15,7 @@ class AdminController < ApplicationController
     user = User.find_by(email: params[:email], password: params[:password])
 
     if user
-      # session[:note] = user.name
-      # 不只是名字
-      # 我們想要在每一頁都可以拿到整個使用者資料
-      session[:current_user] = user
-
+      session[:current_user_id] = user.id
     end
     redirect_to action: :log_in
   end
