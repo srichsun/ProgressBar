@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  # 新增修改刪除都要登入才能造訪
+  before_action :redirect_to_root_if_not_logged_in, except: [:show, :index]
 
   PRODUCTS_PER_PAGE_COUNT = 20
 
