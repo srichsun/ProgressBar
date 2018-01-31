@@ -4,14 +4,16 @@
     <h3><%= product.id  %> <%=  product.name %> </h3>
     <p><%= product.description %></p>
 
-    <div>
-      <%= link_to "edit", edit_product_path(product),class: 'btn btn-primary' %>
-      <%= link_to "Delete", product_path(product),
-                            method: :delete,
-                            class: "btn btn-danger",
-                            data: { confirm: "Are you sure?" } %>
-      <%#= link_to "Delete", "products/#{product.id}",..... %>
-      <!-- 一樣意思 -->
-    </div>
+    <% if current_user %>
+      <div>
+        <%= link_to "edit", edit_product_path(product),class: 'btn btn-primary' %>
+        <%= link_to "Delete", product_path(product),
+                              method: :delete,
+                              class: "btn btn-danger",
+                              data: { confirm: "Are you sure?" } %>
+        <%#= link_to "Delete", "products/#{product.id}",..... %>
+        <!-- 一樣意思 -->
+      </div>
+    <% end %>
   </div>
 </div>

@@ -11,6 +11,14 @@
   </head>
 
   <body>
+    <% if flash[:notice] %>
+      <div class="alert alert-info" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
     <%= render 'layouts/nav' %>
     <%= yield %>
     <%= render 'layouts/footer' %>

@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   before_action :current_user
 
   def current_user
-    # 如果有就不用一直select
-    if @current_user
+    # 如果已經有@current_user就不用一直select
+    if @current_user 
       return @current_user
     end
 
