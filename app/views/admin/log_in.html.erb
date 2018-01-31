@@ -12,7 +12,13 @@
 <% end %>
 
 
-<%= current_user.name %>
+<%# if current_user %>
+  <%#= current_user.name %>
+<%# end %>
+
+<!-- 用try實現體上同等判斷 -->
+<!-- try可以實現有此方法就呼叫name方法，否則回傳nil -->
+<%= current_user.try(:name) %>
 
 <%#= @current_user.name %>
 <!-- 如果我們想要這樣取名字會error，

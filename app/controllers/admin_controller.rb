@@ -5,7 +5,7 @@ class AdminController < ApplicationController
   end
 
   def log_out
-    session[:note] = nil
+    session[:current_user_id] = nil
   end
 
   def create_session
