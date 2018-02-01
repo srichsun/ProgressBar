@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180131061715) do
+ActiveRecord::Schema.define(version: 20180131091512) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -27,18 +27,18 @@ ActiveRecord::Schema.define(version: 20180131061715) do
     t.string "description"
     t.string "image_url"
     t.integer "price"
+    t.integer "category_id"
+    t.integer "subcategory_id"
+    t.index ["subcategory_id"], name: "index_products_on_subcategory_id"
   end
 
   create_table "subcategories", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.string "image_url"
-    t.integer "category_id"  # 增加了這個欄位
+    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-
-    # 把category_id又做成index
-    # 浪費記憶體空間，得以加速。當category與subcategory互找的時候變快。
     t.index ["category_id"], name: "index_subcategories_on_category_id"
   end
 
