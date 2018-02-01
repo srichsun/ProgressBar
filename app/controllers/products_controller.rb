@@ -75,8 +75,11 @@ class ProductsController < ApplicationController
   private
 
   def product_permit
-    params.require(:product).permit([:name, :description, :price, :subcategory_id, :image])
-    # form欄位是image時，送出去沒image欄位，所以不用加
+    params.require(:product).permit([:name, :description, :price, :subcategory_id])
+    # 進來的時候，有image欄位，可是不能加在這邊
+    # 因為你加在這邊image值過了，create時候就會用
+    # 然而product欄位名稱是image_url，不是image，就會出錯。
+
   end
 
   def save_file(newfile)
