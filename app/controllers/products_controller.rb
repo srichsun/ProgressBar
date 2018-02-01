@@ -33,21 +33,13 @@ class ProductsController < ApplicationController
   end
 
   def create
+    image = params[:product][:image]
+    if image
+      image_url = save_file(image)
+    end
+    product = Product.create(product_permit.merge({image_url: image_url}))
 
-    # 把form送來的值存assign創造instance
-    # Product.create(
-    #   name:        params[:name],
-    #   description: params[:description],
-    #   image_url:   params[:image_url],
-    #   price:       params[:price]
-    # )
-    #
-    # 以上其實就是
-    # Product.create(params)
-    # 但是rails有防護機制，要特別允許的值才會讓你過，要像以下
-    product = Product.create(product_permit)
-
-    flash[:note] = "successfully created" #flash讓action之間傳遞值
+    flash[:notice] = "successfully created" #flash讓action之間傳遞值
     redirect_to action: :new     #同一個controller下
   end
 
@@ -61,7 +53,13 @@ class ProductsController < ApplicationController
 
   def update
     product = Product.find(params[:id])
-    product.update(product_permit)
+    image = params[:product][:image]
+    if image
+      image_url = save_file(image)
+      product.update(product_permit.merge({image_url: image_url}))
+    else
+      product.update(product_permit)
+    end
 
     flash[:notice] = 'successfully updated'
     redirect_to action: :edit
@@ -74,11 +72,34 @@ class ProductsController < ApplicationController
     redirect_to action: :index
   end
 
+  private
+
   def product_permit
-    params.require(:product).permit([:name, :description, :image_url, :price, :subcategory_id])
-    # 因為使用form_for
-    # name, description等等這些欄位已經不是在第一層了，被多包在product裡面
-    # "product"=>{"name"=>"GGG", "description"=>"beautiful ocean", "image_url"=>"https://static.pexels.com/photos/128458/pexels-photo-128458.jpeg", "price"=>"200"}
-    # 所以要用require(:product)
+    params.require(:product).permit([:name, :description, :price, :subcategory_id, :image])
+    # form欄位是image時，送出去沒image欄位，所以不用加
   end
+
+  def save_file(newfile)
+    dir_url = Rails.root.join('public', 'uploads/products')
+    FileUtils.mkdir_p(dir_url) unless File.directory?(dir_url) #到/public/uploads創products資料夾
+    file_url = dir_url + newfile.original_filename
+    File.open(file_url, 'w+b') do |file| # 用w+, binary方式開
+      file.write(newfile.read ) # 打圖片存到/public/uploads
+    end
+
+    return '/uploads/products/' + newfile.original_filename #加上圖片名稱變成完整圖片路徑
+    # chrome - network - 找到圖片 - general 可以看到圖片路徑
+    # Request URL:http://localhost:3000/uploads/products/pic.jpg
+  end
+
+
+
+
+
+
+
+
+
+
+
 end
