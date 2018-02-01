@@ -21,6 +21,8 @@ class ProductsController < ApplicationController
       @last_page_number += 1
     end
 
+    @categories = Category.all
+
     @products = Product.all
     @current_page_number = params[:current_page] ? params[:current_page].to_i : 1
     @products = @products.offset((@current_page_number - 1) * PRODUCTS_PER_PAGE_COUNT).limit(PRODUCTS_PER_PAGE_COUNT)

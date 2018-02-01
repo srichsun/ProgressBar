@@ -1,32 +1,18 @@
 <div class="container">
   <div class="row">
       <div class="col-xs-3">
-        <ul class="list-group">
-          <li class="list-group-item">
-            Category1
-            <ul class="list-group">
-              <li class="list-group-item">Sub Category</li>
-              <li class="list-group-item">Sub Category</li>
-              <li class="list-group-item">Sub Category</li>
-            </ul>
-          </li>
-          <li class="list-group-item">
-            Category2
-            <ul class="list-group">
-              <li class="list-group-item">Sub Category</li>
-              <li class="list-group-item">Sub Category</li>
-              <li class="list-group-item">Sub Category</li>
-            </ul>
-          </li>
-          <li class="list-group-item">
-            Category3
-            <ul class="list-group">
-              <li class="list-group-item">Sub Category</li>
-              <li class="list-group-item">Sub Category</li>
-              <li class="list-group-item">Sub Category</li>
-            </ul>
-          </li>
-        </ul>
+        <% @categories.each do |category|  %>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <%= category.name %>
+              <ul class="list-group">
+                <% category.subcategories.each do | subcatwgory | %>
+                  <li class="list-group-item"><%= subcatwgory.name %></li>
+                <% end %>
+              </ul>
+            </li>
+          </ul>
+        <% end %>
       </div>
 
       <div class="col-xs-9">
