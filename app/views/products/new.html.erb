@@ -1,4 +1,4 @@
-<h3>新增產品</h3>
+<h3>create product</h3>
 <%= form_for @product, method: :post  do |f| %>
   <%= f.label :name, "名稱" %>
   <%= f.text_field :name %><br>
@@ -12,5 +12,7 @@
   <%= f.label :image_url, "圖片" %>
   <%= f.text_field :image_url %><br>
 
+  <%= f.label :subcategory, "副類別" %>
+  <%= f.select("subcategory_id", Subcategory.all.collect {|s| [ s.name, s.id ] }, {include_blank: 'None'}) %><br>
   <%= f.submit "更新" %>
 <% end %>

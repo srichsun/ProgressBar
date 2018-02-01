@@ -1,20 +1,24 @@
 <h3>編輯商品</h3>
-<%= form_for @product, method: :put do |p| %>
-  <%= p.label :name, "名稱" %>
-  <%= p.text_field :name %>
+<%= form_for @product, method: :put do |f| %>
+  <%= f.label :name, "名稱" %>
+  <%= f.text_field :name %>
   <br>
 
-  <%= p.label :description, "敘述" %>
-  <%= p.text_field :description %>
+  <%= f.label :description, "敘述" %>
+  <%= f.text_field :description %>
   <br>
 
-  <%= p.label :image_url, "圖片連結" %>
-  <%= p.text_field :image_url %>
+  <%= f.label :image_url, "圖片連結" %>
+  <%= f.text_field :image_url %>
   <br>
 
-  <%= p.label :price, "價格" %>
-  <%= p.number_field :price%>
+  <%= f.label :price, "價格" %>
+  <%= f.number_field :price%>
   <br>
 
-  <%= p.submit "更新"%>
+  <%= f.label :subcategory_id, "副類別" %>
+  <%= f.select("subcategory_id", Subcategory.all.collect {|s| [ s.name, s.id ] }, {include_blank: 'None'}) %>
+  <br>
+
+  <%= f.submit "更新"%>
 <% end %>
