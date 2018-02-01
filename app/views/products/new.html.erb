@@ -13,6 +13,6 @@
   <%= f.text_field :image_url %><br>
 
   <%= f.label :subcategory, "副類別" %>
-  <%= f.select("subcategory_id", Subcategory.all.collect {|s| [ s.name, s.id ] }, {include_blank: 'None'}) %><br>
+  <%= f.select("subcategory_id", Subcategory.all.collect {|s| [ s.name_with_category, s.id ] }, {include_blank: 'None'}) %><br>
   <%= f.submit "更新" %>
 <% end %>

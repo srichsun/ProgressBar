@@ -17,7 +17,7 @@
   <br>
 
   <%= f.label :subcategory_id, "副類別" %>
-  <%= f.select("subcategory_id", Subcategory.all.collect {|s| [ s.name, s.id ] }, {include_blank: 'None'}) %>
+  <%= f.select("subcategory_id", Subcategory.all.collect {|s| [ s.name_with_category, s.id ] }, {include_blank: 'None'}) %>
   <br>
 
   <%= f.submit "更新"%>
