@@ -9,10 +9,36 @@
   <%= f.label :description, "描述" %>
   <%= f.text_field :description %><br>
 
-  <%= f.label :image, "圖片" %>
-  <%= f.file_field :image %><br>
+  <%= f.label :image, "圖片" %><br>
+  <%= image_tag (@product.image_url || "http://via.placeholder.com/350x150"), size: '350x150', id: 'target', original_url: @product.image_url %>
+  <%= f.file_field :image, accept: "image/gif, image/jpeg, image/png" %>
+  <br>
 
   <%= f.label :subcategory, "副類別" %>
   <%= f.select("subcategory_id", Subcategory.all.collect {|s| [ s.name_with_category, s.id ] }, {include_blank: 'None'}) %><br>
   <%= f.submit "create" %>
 <% end %>
+
+
+<script>
+
+$(function(){
+  $("#product_image").change(function(){
+    readURL(this, "target");
+  });
+
+  function readURL(input, image_tag_id){
+    if(input.files && input.files[0]){
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $("#" + image_tag_id).attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }else {
+      var original_url = $("#" + image_tag_id).attr("original_url");
+      $("#" + image_tag_id).attr('src', original_url);
+    }
+  }
+});
+
+</script>
