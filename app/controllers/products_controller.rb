@@ -94,15 +94,4 @@ class ProductsController < ApplicationController
     # chrome - network - 找到圖片 - general 可以看到圖片路徑
     # Request URL:http://localhost:3000/uploads/products/pic.jpg
   end
-
-
-
-
-
-
-
-
-
-
-
 end
