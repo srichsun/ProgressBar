@@ -1,5 +1,5 @@
 class SubcategoriesController < ApplicationController
-  before_action :get_category, :get_subcategory only: [:products]
+  before_action :get_category, :get_subcategory, only: [:products]
   def products
   end
 
