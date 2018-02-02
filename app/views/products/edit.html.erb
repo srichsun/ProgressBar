@@ -1,4 +1,4 @@
-<h3>編輯商品</h3>
+<h3>edit product</h3>
 <%= form_for @product, method: :put do |f| %>
   <%= f.label :name, "名稱" %>
   <%= f.text_field :name %>
@@ -8,8 +8,9 @@
   <%= f.text_field :description %>
   <br>
 
+  <%= image_tag @product.image_url, size: '300x300', id: 'target', original_url: @product.image_url %>
   <%= f.label :image, "圖片" %>
-  <%= f.file_field :image %>
+  <%= f.file_field :image, accept: "image/gif, image/jpeg, image/png" %>
   <br>
 
   <%= f.label :price, "價格" %>
@@ -22,3 +23,26 @@
 
   <%= f.submit "更新"%>
 <% end %>
+
+<script>
+
+$(function(){
+  $("#product_image").change(function(){
+    readURL(this, "target");
+  });
+
+  function readURL(input, image_tag_id){
+    if(input.files && input.files[0]){
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $("#" + image_tag_id).attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }else {
+      var original_url = $("#" + image_tag_id).attr("original_url");
+      $("#" + image_tag_id).attr('src', original_url);
+    }
+  }
+});
+
+</script>
