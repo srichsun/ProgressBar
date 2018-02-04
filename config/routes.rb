@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :categories, param: :category_id, only: [] do
     member do
+      get :products
       resources :subcategories, param: :subcategory_id, only: [] do
         member do
           get :products
