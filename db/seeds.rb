@@ -44,17 +44,18 @@ categories.each do |c|
 end
 
 # product
-subcategory = Subcategory.first
-PRODUCTS_COUNT = 80
+Subcategory.all.each_with_index do |subcategory, index|
+  products_count = (index + 1)*2
 
-PRODUCTS_COUNT.times do
-  product =
-  {
-    name: "ocean",
-    description: "beautiful ocean",
-    image_url: "https://static.pexels.com/photos/128458/pexels-photo-128458.jpeg",
-    subcategory: subcategory
-  }
+  products_count.times do
+    product =
+    {
+      name: "ocean",
+      description: "beautiful ocean",
+      image_url: "https://static.pexels.com/photos/128458/pexels-photo-128458.jpeg",
+      subcategory: subcategory
+    }
 
-  Product.create(product)
+    Product.create(product)
+  end
 end

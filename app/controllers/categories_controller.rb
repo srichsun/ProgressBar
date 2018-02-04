@@ -4,8 +4,9 @@ class CategoriesController < ApplicationController
   PRODUCTS_PER_PAGE_COUNT = 20
 
   def products
-    #to do tmp
-    @products = []
+    # @products = @category.subcategories.first.product
+    # 加入has_many_through 關聯後就可以這樣用
+    @products = @category.products
 
     @ad = {
       title: "Advmeds Design",
