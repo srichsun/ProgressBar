@@ -3,6 +3,7 @@ class SubcategoriesController < ApplicationController
   before_action :get_subcategory, only: [:products]
 
   def products
+    @products = Subcategory.products
   end
 
   private
