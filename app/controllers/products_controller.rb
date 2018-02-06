@@ -1,6 +1,14 @@
 class ProductsController < ApplicationController
   # 新增修改刪除都要登入才能造訪
-  before_action :redirect_to_root_if_not_logged_in, except: [:show, :index]
+  before_action :redirect_to_root_if_not_logged_in, except: [:show, :index, :products]
+
+  # 因為categoriescontroller#products跟ProductsController#indec程式碼幾乎一樣。
+  # 把ProductsController#indec裡面的code包成method，
+  # 然後categoriescontroller再繼承ProductsController
+  # 這樣categoriescontroller的products方法就可以重複使用這些method
+  before_action :prepare_index, only: [:index, :products]
+  before_action :get_products, only: [:index, :products]
+  before_action :create_pagination, only: [:index, :products]
 
   PRODUCTS_PER_PAGE_COUNT = 20
 
@@ -9,23 +17,6 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @ad = {
-      title: "Advmeds Design",
-      description: "Best Clinic reservation system",
-      action_title: "more"
-    }
-
-    @first_page_number = 1
-    @last_page_number = Product.count / PRODUCTS_PER_PAGE_COUNT
-    if (Product.count % PRODUCTS_PER_PAGE_COUNT)
-      @last_page_number += 1
-    end
-
-    @categories = Category.all
-
-    @products = Product.all
-    @current_page_number = params[:current_page] ? params[:current_page].to_i : 1
-    @products = @products.offset((@current_page_number - 1) * PRODUCTS_PER_PAGE_COUNT).limit(PRODUCTS_PER_PAGE_COUNT)
   end
 
   def new
@@ -73,25 +64,60 @@ class ProductsController < ApplicationController
   end
 
   private
+    def product_permit
+      params.require(:product).permit([:name, :description, :price, :subcategory_id])
+      # 進來的時候，有image欄位，可是不能加在這邊
+      # 因為你加在這邊image值過了，create時候就會用
+      # 然而product欄位名稱是image_url，不是image，就會出錯。
 
-  def product_permit
-    params.require(:product).permit([:name, :description, :price, :subcategory_id])
-    # 進來的時候，有image欄位，可是不能加在這邊
-    # 因為你加在這邊image值過了，create時候就會用
-    # 然而product欄位名稱是image_url，不是image，就會出錯。
-
-  end
-
-  def save_file(newfile)
-    dir_url = Rails.root.join('public', 'uploads/products')
-    FileUtils.mkdir_p(dir_url) unless File.directory?(dir_url) #到/public/uploads創products資料夾
-    file_url = dir_url + newfile.original_filename
-    File.open(file_url, 'w+b') do |file| # 用w+, binary方式開
-      file.write(newfile.read ) # 打圖片存到/public/uploads
     end
 
-    return '/uploads/products/' + newfile.original_filename #加上圖片名稱變成完整圖片路徑
-    # chrome - network - 找到圖片 - general 可以看到圖片路徑
-    # Request URL:http://localhost:3000/uploads/products/pic.jpg
-  end
+    def save_file(newfile)
+      dir_url = Rails.root.join('public', 'uploads/products')
+      FileUtils.mkdir_p(dir_url) unless File.directory?(dir_url) #到/public/uploads創products資料夾
+      file_url = dir_url + newfile.original_filename
+      File.open(file_url, 'w+b') do |file| # 用w+, binary方式開
+        file.write(newfile.read ) # 打圖片存到/public/uploads
+      end
+
+      return '/uploads/products/' + newfile.original_filename #加上圖片名稱變成完整圖片路徑
+      # chrome - network - 找到圖片 - general 可以看到圖片路徑
+      # Request URL:http://localhost:3000/uploads/products/pic.jpg
+    end
+
+    def prepare_index
+      create_ad
+      get_current_page_number
+      get_all_categories
+    end
+
+    def create_ad
+      @ad = {
+        title: "Advmeds Design",
+        description: "Best Clinic reservation system",
+        action_title: "more"
+      }
+    end
+
+    def get_current_page_number
+      @current_page_number = params[:current_page] ? params[:current_page].to_i : 1
+    end
+
+    def get_all_categories
+      @categories = Category.all
+    end
+
+    def get_products
+      @products = Product.all
+    end
+
+    def create_pagination
+      @first_page_number = 1
+      @last_page_number = Product.count / PRODUCTS_PER_PAGE_COUNT
+      if (Product.count % PRODUCTS_PER_PAGE_COUNT)
+        @last_page_number += 1
+      end
+
+      @products = @products.offset((@current_page_number - 1) * PRODUCTS_PER_PAGE_COUNT).limit(PRODUCTS_PER_PAGE_COUNT)
+    end
 end
