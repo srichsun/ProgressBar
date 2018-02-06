@@ -113,7 +113,7 @@ class ProductsController < ApplicationController
 
     def create_pagination
       @first_page_number = 1
-      @last_page_number = Product.count / PRODUCTS_PER_PAGE_COUNT
+      @last_page_number = @products.count / PRODUCTS_PER_PAGE_COUNT
       if (Product.count % PRODUCTS_PER_PAGE_COUNT)
         @last_page_number += 1
       end
