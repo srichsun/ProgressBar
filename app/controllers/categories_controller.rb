@@ -1,8 +1,8 @@
 class CategoriesController < ProductsController
   before_action :get_category, only: [:products]
   #這樣products action就可以拿到@category
-  before_action :get_products, only: [:index, :products]
-  before_action :create_pagination, only: [:index, :products]
+  before_action :get_products, only: [:products]
+  before_action :create_pagination, only: [:products]
 
   def products
     # @products = @category.subcategories.first.product
