@@ -3,6 +3,8 @@ class CategoriesController < ProductsController
   #這樣products action就可以拿到@category
   before_action :get_products, only: [:products]
   before_action :create_pagination, only: [:products]
+  # 照理說create_pagination是private方法不能被繼承的class呼叫，
+  # 但是ruby中直接呼叫方法名還可以呼叫得到。
 
   def products
     # @products = @category.subcategories.first.product
