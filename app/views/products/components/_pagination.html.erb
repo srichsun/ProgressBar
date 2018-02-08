@@ -3,16 +3,16 @@
     <% if current_page_number > first_page_number %>
       <li>
         <%= link_to '<span aria-hidden="true">&laquo;</span>'.html_safe,
-        root_path(current_page: (current_page_number-1)), 'aria-label': "Previous" %>
+        send(custom_url_helper, {current_page: (current_page_number-1)}), 'aria-label': "Previous" %>
       </li>
     <% end %>
     <% (first_page_number..last_page_number).each do |page_number| %>
-      <li><%= link_to "#{page_number}", root_path(current_page: page_number) %></li>
+      <li><%= link_to "#{page_number}", send(custom_url_helper, {current_page: page_number}) %></li>
     <% end%>
     <% if current_page_number < last_page_number %>
       <li>
         <%= link_to '<span aria-hidden="true">&raquo;</span>'.html_safe,
-        custom_url_helper(current_page: (current_page_number+1)), 'aria-label': "Previous" %>
+        send(custom_url_helper, {current_page: (current_page_number+1)}), 'aria-label': "Previous" %>
       </li>
     <% end %>
   </ul>
