@@ -12,7 +12,7 @@
     <% if current_page_number < last_page_number %>
       <li>
         <%= link_to '<span aria-hidden="true">&raquo;</span>'.html_safe,
-        root_path(current_page: (current_page_number+1)), 'aria-label': "Previous" %>
+        custom_url_helper(current_page: (current_page_number+1)), 'aria-label': "Previous" %>
       </li>
     <% end %>
   </ul>
