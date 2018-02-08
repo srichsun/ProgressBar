@@ -1,24 +1,7 @@
 <div class="container">
   <div class="row">
       <div class="col-xs-3">
-        <% @categories.each do |category|  %>
-          <ul class="list-group">
-            <li class="list-group-item">
-              <%= link_to category.name, products_category_path(category), class: "btn btn-primary" %>
-              <ul class="list-group">
-                <% category.subcategories.each do | subcategory | %>
-                  <li class="list-group-item">
-                    <%= link_to subcategory.name, products_subcategory_path(category, subcategory), class: "btn btn-primary" %>
-                    <%# link_to products_subcategory_path(category_id: category.id, subcategory_id: subcategory.id) do%>
-                      <%#= subcategory.name %>
-                    <%# end %>
-                    <!-- 另一種寫法 -->
-                  </li>
-                <% end %>
-              </ul>
-            </li>
-          </ul>
-        <% end %>
+        <%= render 'products/components/side_bar', categories: @categories %>
       </div>
 
       <div class="col-xs-9">
@@ -41,25 +24,10 @@
         </div>
         <div class="row">
           <div class="col-xs-12">
-            <nav aria-label="Page navigation">
-              <ul class="pagination">
-                <% if @current_page_number > @first_page_number %>
-                  <li>
-                    <%= link_to '<span aria-hidden="true">&laquo;</span>'.html_safe,
-                    root_path(current_page: (@current_page_number-1)), 'aria-label': "Previous" %>
-                  </li>
-                <% end %>
-                <% (@first_page_number..@last_page_number).each do |page_number| %>
-                  <li><%= link_to "#{page_number}", root_path(current_page: page_number) %></li>
-                <% end%>
-                <% if @current_page_number < @last_page_number %>
-                  <li>
-                    <%= link_to '<span aria-hidden="true">&raquo;</span>'.html_safe,
-                    root_path(current_page: (@current_page_number+1)), 'aria-label': "Previous" %>
-                  </li>
-                <% end %>
-              </ul>
-            </nav>
+            <%= render 'products/components/pagination', current_page_number: @current_page_number,
+                                                         first_page_number: @first_page_number,
+                                                         last_page_number: @last_page_number
+            %>
           </div>
         </div>
       </div>
