@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   # 把ProductsController#indec裡面的code包成method，
   # 然後categoriescontroller再繼承ProductsController
   # 這樣categoriescontroller的products方法就可以重複使用這些method
-  before_action :prepare_index, only: [:index, :products]
+  before_action :prepare_index, only: [:index, :products, :show]
   before_action :get_products, only: [:index]
   before_action :create_pagination, only: [:index]
 

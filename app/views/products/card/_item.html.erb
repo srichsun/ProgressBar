@@ -1,7 +1,11 @@
 <div class="thumbnail">
-  <%= image_tag ( product.image_url || "http://via.placeholder.com/350x150" )%>
+  <%= link_to product_path(product) do%>
+    <%= image_tag ( product.image_url || "http://via.placeholder.com/350x150" )%>
+  <% end %>
   <div class="caption">
-    <h3><%= product.id  %> <%=  product.name %> </h3>
+    <%= link_to product_path(product) do%>
+      <h3><%= product.id  %> <%=  product.name %> </h3>
+    <% end %>
     <h5> 類別: <%= product.subcategory.name_with_category %></h3>
     <p><%= product.description %></p>
 

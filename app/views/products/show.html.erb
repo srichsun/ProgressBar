@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <!-- 左邊sidebar -->
+    <div class="col-xs-3">
+      <%= render 'products/components/side_bar', categories: @categories %>
+    </div>
+
+    <!-- 右邊content  -->
+    <div class="col-xs-9">
+      <!-- 麵包屑 -->
+      <div class="row">
+        <div class="col-xs-12">
+          <h3> 類別: <%= @product.subcategory.name_with_category %></h3>
+        </div>
+      </div>
+
+      <!-- 圖片&標題描述 -->
+      <div class="row">
+        <!-- 圖片 -->
+        <div class="col-xs-3">
+          <%= image_tag ( @product.image_url || "http://via.placeholder.com/350x150" ), class: "img-responsive"%>
+        </div>
+
+        <!-- 標題/描述 bootstrap panel  -->
+        <div class="col-xs-9">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4><%= @product.id  %> <%=  @product.name %> </h4>
+            </div>
+            <div class="panel-body">
+              <p><%= @product.description %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 購買按鈕 -->
+      <div class="row">
+        <div class="col-xs-12">
+          <button class="btn btn-primary btn-block">buy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
