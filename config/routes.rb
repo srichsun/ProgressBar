@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/srichsun_admin', as: 'rails_admin'
   root to: 'products#index'
 
   get 'admin/log_in', to: 'admin#log_in'
