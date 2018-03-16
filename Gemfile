@@ -38,6 +38,7 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'pry'
 gem 'rails_admin', '~> 1.3'
 gem 'mysql2'
+gem 'carrierwave', '~> 1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
