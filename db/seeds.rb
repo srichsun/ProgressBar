@@ -52,7 +52,7 @@ Subcategory.all.each_with_index do |subcategory, index|
     {
       name: "ocean",
       description: "beautiful ocean",
-      image_url: "https://static.pexels.com/photos/128458/pexels-photo-128458.jpeg",
+      # image_url: "https://static.pexels.com/photos/128458/pexels-photo-128458.jpeg",
       subcategory: subcategory
     }
 
