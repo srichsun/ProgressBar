@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
 
   def index
-    @EvanGirl = EvanGirl.new
-    @word = @EvanGirl.motivate
+    @EvanGirl_num = EvanGirl.number
+    @word = EvanGirl.new.motivate
   end
 
   def send_email
