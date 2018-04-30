@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 
   def index
     @EvanGirl_num = EvanGirl.number
-    @word = EvanGirl.new.motivate
+    @word = EvanGirl.motivate
   end
 
   def send_email

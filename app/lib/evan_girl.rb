@@ -1,5 +1,5 @@
 class EvanGirl
-  include EvanStyle
+  extend EvanStyle
 
   def self.number
     14
