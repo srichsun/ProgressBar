@@ -4,7 +4,7 @@ class HomeController < ApplicationController
     @EvanGirl_num = EvanGirl.number
     @word = EvanGirl.motivate
     @word2 = EvanGirl.new.demotivate
-    @word3 = EvanGirl.new.diss
+    @word3 = EvanGirl.diss
   end
 
   def send_email

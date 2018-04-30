@@ -1,10 +1,14 @@
 class EvanGirl
   extend EvanStyle::Positive
   include EvanStyle::Negative
-  include Nonsense
+
 
   def self.number
     14
+  end
+
+  def self.diss
+    Nonsense.diss
   end
 
   # 當 include EvanStyle::Negative時候，其實就好像把這些code複製到這邊

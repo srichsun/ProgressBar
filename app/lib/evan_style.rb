@@ -11,7 +11,7 @@ module EvanStyle
     end
 
     module Nonsense
-      def diss
+      def self.diss
         "Life is just like a chocolate!:("
       end
     end
