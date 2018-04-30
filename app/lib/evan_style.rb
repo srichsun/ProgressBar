@@ -9,5 +9,11 @@ module EvanStyle
     def demotivate
       "Life is suck! Fucker!:("
     end
+
+    module Nonsense
+      def diss
+        "Life is just like a chocolate!:("
+      end
+    end
   end
 end
