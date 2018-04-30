@@ -1,10 +1,8 @@
 class HomeController < ApplicationController
 
-  include EvanStyle    # include module名
-
   def index
-    @word = motivate   # 就可以用module的function
     @EvanGirl = EvanGirl.new
+    @word = @EvanGirl.motivate
   end
 
   def send_email
