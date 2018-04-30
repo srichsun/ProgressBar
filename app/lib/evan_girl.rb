@@ -1,5 +1,6 @@
 class EvanGirl
-  extend EvanStyle
+  extend EvanStyle::Positive
+  include EvanStyle::Negative
 
   def self.number
     14
