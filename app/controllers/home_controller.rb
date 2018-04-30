@@ -1,5 +1,9 @@
 class HomeController < ApplicationController
+  require 'evan_style' # require lib檔
+  include EvanQuote    # include module名
+
   def index
+    @word = motivate   # 就可以用module的function
   end
 
   def send_email
