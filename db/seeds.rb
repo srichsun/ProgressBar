@@ -7,12 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # user
-admin = User.create(
-  name: "rock",
-  email: "a@gmail.com",
-  password: "333",
-  is_admin: "true"
-)
+# admin = User.create(
+#   name: "rock",
+#   email: "a@gmail.com",
+#   password: "333",
+#   is_admin: "true"
+# )
 
 # category, subcategory
 categories = [
