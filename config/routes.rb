@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   mount RailsAdmin::Engine => '/srichsun_admin', as: 'rails_admin'
   root to: 'products#index'
 
