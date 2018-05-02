@@ -1,0 +1,50 @@
+<h1>Checkout</h1>
+
+<div class="">
+  <h3>shopping cart product</h3>
+  <% @buy_now_items.each_with_index do |item, index| %>
+    <ul>
+      <li>
+        <p>
+          <%= index %>: <%= item.product_name %>
+        </p>
+        <p>
+          single price: <%= item.product_price || 0%>
+        </p>
+        <p>
+          quantity: <%= item.quantity %>
+        </p>
+      </li>
+    </ul>
+  <% end %>
+</div>
+<hr>
+<p>total amount: <%= @amount || 0 %> </p>
+<button type="button" name="button" class= "btn btn-warning">
+  check out
+</button>
+
+<hr>
+<div class="">
+  <h3>shopping cart product</h3>
+  <% @buy_next_time_items.each_with_index do |item, index| %>
+    <ul>
+      <li>
+        <p>
+          <%= index %>: <%= item.product_name %>
+        </p>
+        <p>
+          single price: <%= item.product_price || 0%>
+        </p>
+        <p>
+          quantity: <%= item.quantity %>
+        </p>
+      </li>
+    </ul>
+  <% end %>
+</div>
+<hr/>
+
+<button type="button" name="button" class= "btn btn-warning">
+  check out
+</button>
