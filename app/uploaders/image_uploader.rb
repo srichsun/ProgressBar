@@ -22,7 +22,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
     # 仿造從瀏覽器看到用uploader上傳的圖片的路徑
     # "/uploads/product/image_url/22/pexels-photo-128458.jpeg"
-    "/uploads/#{model.class.to_s.underscore}/#{mounted_as}/default/default.jpeg"
+    "/uploads/#{model.class.to_s.underscore}/#{mounted_as}/default/white.jpeg"
 
     # "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   end
